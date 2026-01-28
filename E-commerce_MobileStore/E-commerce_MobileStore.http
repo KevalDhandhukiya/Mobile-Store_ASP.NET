@@ -1,0 +1,6 @@
+@E_commerce_MobileStore_HostAddress = http://localhost:5032
+
+GET {{E_commerce_MobileStore_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

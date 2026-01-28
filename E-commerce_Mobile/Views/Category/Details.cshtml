@@ -1,0 +1,53 @@
+@model CategoryModel
+
+@{
+    ViewData["Title"] = "Category Details";
+}
+
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Category Details</h1>
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Back to Categories
+        </a>
+    </div>
+
+    <div class="card shadow">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Category Information</h6>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Category ID:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.CategoryId)</dd>
+
+                <dt class="col-sm-3">Category Name:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.CategoryName)</dd>
+
+                <dt class="col-sm-3">User ID:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.UserId)</dd>
+
+                <dt class="col-sm-3">Created Date:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Created, "{0:MM/dd/yyyy HH:mm}")</dd>
+
+                <dt class="col-sm-3">Modified Date:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Modified, "{0:MM/dd/yyyy HH:mm}")</dd>
+            </dl>
+
+            <hr>
+            <div class="d-flex justify-content-between">
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="fas fa-list"></i> Back to List
+                </a>
+                <div>
+                    <a asp-action="Edit" asp-route-id="@Model.CategoryId" class="btn btn-warning">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@Model.CategoryId" class="btn btn-danger">
+                        <i class="fas fa-trash"></i> Delete
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

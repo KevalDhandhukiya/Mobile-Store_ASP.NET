@@ -1,0 +1,88 @@
+@model E_commerce_Mobile.Models.ProductModel
+
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">@Html.DisplayFor(model => model.ModelName) Details</h4>
+                </div>
+                <div class="card-body">
+                    @if (!string.IsNullOrEmpty(ViewBag.Error))
+                    {
+                        <div class="alert alert-danger">@ViewBag.Error</div>
+                    }
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <dl class="row">
+                                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.ProductId)</dt>
+                                <dd class="col-sm-8">@Html.DisplayFor(model => model.ProductId)</dd>
+                                
+                                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.ModelName)</dt>
+                                <dd class="col-sm-8">@Html.DisplayFor(model => model.ModelName)</dd>
+                                
+                                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.CompanyName)</dt>
+                                <dd class="col-sm-8">@Html.DisplayFor(model => model.CompanyName)</dd>
+                                
+                                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Price)</dt>
+                                <dd class="col-sm-8">₹ @Html.DisplayFor(model => model.Price)</dd>
+                            </dl>
+                        </div>
+                        <div class="col-md-6">
+                            <dl class="row">
+                                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.LaunchDate)</dt>
+                                <dd class="col-sm-8">@Html.DisplayFor(model => model.LaunchDate)</dd>
+                                
+                                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Stock)</dt>
+                                <dd class="col-sm-8">@Html.DisplayFor(model => model.Stock)</dd>
+                                
+                                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Category)</dt>
+                                <dd class="col-sm-8">@Html.DisplayFor(model => model.Category.CategoryName)</dd>
+                                
+                                <dt class="col-sm-4">Status</dt>
+                                <dd class="col-sm-8">
+                                    @if (Model.IsRemoved)
+                                    {
+                                        <span class="badge bg-danger">Removed</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-success">Active</span>
+                                    }
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    
+                    @if (!string.IsNullOrEmpty(Model.Description))
+                    {
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <h5>Description</h5>
+                                <p>@Html.DisplayFor(model => model.Description)</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="card-footer">
+                    <div class="btn-group" role="group">
+                        <a href="@Url.Action("Edit", new { id = Model.ProductId })" class="btn btn-warning">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <a href="@Url.Action("Delete", new { id = Model.ProductId })" class="btn btn-danger">
+                            <i class="fas fa-trash"></i> Delete
+                        </a>
+                        <a href="@Url.Action("Index")" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Back to List
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

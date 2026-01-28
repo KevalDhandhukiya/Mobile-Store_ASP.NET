@@ -1,0 +1,19 @@
+@{
+    ViewData["Title"] = "Session Test";
+}
+
+<div class="container mt-4">
+    <h2>Session Test</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Current Session Values</h5>
+            <p><strong>User ID:</strong> @ViewBag.UserId</p>
+            <p><strong>User Name:</strong> @ViewBag.UserName</p>
+            <p><strong>Is Admin:</strong> @ViewBag.IsAdmin</p>
+            
+            <hr>
+            <a href="/Auth/Login" class="btn btn-primary">Go to Login</a>
+            <a href="/Home/Index" class="btn btn-secondary">Go to Home</a>
+        </div>
+    </div>
+</div>

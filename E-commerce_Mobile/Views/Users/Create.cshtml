@@ -1,0 +1,132 @@
+@model E_commerce_Mobile.Models.UserModel
+
+@{
+    ViewData["Title"] = "Create User";
+}
+
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Create New User</h1>
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Back to Users
+        </a>
+    </div>
+
+    @if (!string.IsNullOrEmpty(ViewBag.Error))
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> @ViewBag.Error
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow border-0">
+                <div class="card-header border-0 py-3" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <div class="d-flex align-items-center">
+                        <div class="text-white me-3">
+                            <i class="fas fa-user-plus fa-2x"></i>
+                        </div>
+                        <div>
+                            <h4 class="mb-1 fw-bold text-white">Create New User</h4>
+                            <p class="mb-0 small text-white" style="opacity: 0.9;">Fill in the details to register a new user</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-4 p-md-5">
+                    <form asp-action="Create" method="post" class="needs-validation">
+                        <div class="row g-4">
+                            <div class="col-12">
+                                <h6 class="text-uppercase text-muted fw-bold small mb-3 letter-spacing-1">Account Information</h6>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-floating mb-1">
+                                    <input asp-for="UserName" class="form-control bg-light border-0" placeholder="Username" required />
+                                    <label asp-for="UserName" class="text-muted"><i class="fas fa-user me-2"></i>Username</label>
+                                </div>
+                                <div class="form-text small ps-2 text-muted">
+                                    <i class="fas fa-info-circle me-1"></i>3-20 characters, letters & numbers
+                                </div>
+                                <span asp-validation-for="UserName" class="text-danger small ps-2"></span>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-floating mb-1">
+                                    <input asp-for="Password" type="password" class="form-control bg-light border-0" placeholder="Password" required />
+                                    <label asp-for="Password" class="text-muted"><i class="fas fa-lock me-2"></i>Password</label>
+                                </div>
+                                <div class="form-text small ps-2 text-muted">
+                                    <i class="fas fa-key me-1"></i>Min 6 chars, 1 upper, 1 lower, 1 number
+                                </div>
+                                <span asp-validation-for="Password" class="text-danger small ps-2"></span>
+                            </div>
+                            
+                            <div class="col-12 mt-4">
+                                <h6 class="text-uppercase text-muted fw-bold small mb-3 letter-spacing-1">Contact Details</h6>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="Email" class="form-control bg-light border-0" placeholder="name@example.com" />
+                                    <label asp-for="Email" class="text-muted"><i class="fas fa-envelope me-2"></i>Email Address</label>
+                                </div>
+                                <span asp-validation-for="Email" class="text-danger small ps-2"></span>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="Contact" class="form-control bg-light border-0" placeholder="Phone" />
+                                    <label asp-for="Contact" class="text-muted"><i class="fas fa-phone me-2"></i>Contact Number</label>
+                                </div>
+                                <span asp-validation-for="Contact" class="text-danger small ps-2"></span>
+                            </div>
+
+                            <div class="col-12 mt-4">
+                                <hr class="border-light">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <a asp-action="Index" class="btn btn-light text-muted fw-bold px-4 rounded-pill">
+                                        <i class="fas fa-arrow-left me-2"></i>Back
+                                    </a>
+                                    <button type="submit" class="btn btn-primary px-5 py-2 rounded-pill shadow fw-bold">
+                                        Create User <i class="fas fa-check ms-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function() {
+            $('#Password').on('input', function() {
+                var password = $(this).val();
+                var hasLower = /[a-z]/.test(password);
+                var hasUpper = /[A-Z]/.test(password);
+                var hasNumber = /\d/.test(password);
+                var hasValidLength = password.length >= 6;
+                var hasValidChars = /^[a-zA-Z0-9]*$/.test(password);
+                
+                var isValid = hasLower && hasUpper && hasNumber && hasValidLength && hasValidChars;
+                
+                if (password.length > 0) {
+                    if (isValid) {
+                        $(this).removeClass('is-invalid').addClass('is-valid');
+                    } else {
+                        $(this).removeClass('is-valid').addClass('is-invalid');
+                    }
+                } else {
+                    $(this).removeClass('is-valid is-invalid');
+                }
+            });
+        });
+    </script>
+}
+
