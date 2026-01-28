@@ -85,10 +85,4 @@ The application features a consistent **Purple Gradient Theme** (`#667eea` → `
 - **Product Images:** Displays actual product photos for specific models (e.g., Vivo V27, V29) with auto-fallback to stylized icons.
 - **Interactive Elements:** Hover effects, animated transitions, and mobile-responsive layouts.
 
-## 🤝 Contributing
 
-Contributions are welcome! Please fork the repository and create a pull request for any feature updates or bug fixes.
-
-## 📜 License
-
-This project is licensed under the MIT License.
